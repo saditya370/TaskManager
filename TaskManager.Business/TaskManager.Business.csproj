@@ -15,4 +15,10 @@
     <ProjectReference Include="..\TaskManager.Utilities\TaskManager.Utilities.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="IServices\" />
+    <Folder Include="ServiceModels\" />
+    <Folder Include="Services\" />
+  </ItemGroup>
+
 </Project>
