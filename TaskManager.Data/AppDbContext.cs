@@ -19,6 +19,9 @@ namespace TaskManager.Data
         public DbSet<TaskItem> Tasks { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Tag> Tags { get; set; }
+
+        public DbSet<BoardMember> BoardMembers => Set<BoardMember>();
+
         public AppDbContext(DbContextOptions options) : base(options)
         {
         }
@@ -59,7 +62,7 @@ namespace TaskManager.Data
                 .WithMany(t => t.Comments)
                 .HasForeignKey(c => c.TaskItemId);
 
-           modelBuilder.Entity<TaskItem>()
+            modelBuilder.Entity<TaskItem>()
                 .HasMany(t => t.Tags)
                 .WithMany(tag => tag.Tasks)
                 .UsingEntity<Dictionary<string, object>>(
@@ -68,6 +71,16 @@ namespace TaskManager.Data
                     j => j.HasOne<TaskItem>().WithMany().HasForeignKey("TaskItemId")
                 );
 
+            modelBuilder.Entity<BoardMember>()
+                .HasKey(bm => new { bm.BoardId, bm.UserId });
+            modelBuilder.Entity<BoardMember>()
+                .HasOne(bm => bm.Board)
+                .WithMany(b => b.BoardMemberships)
+                .HasForeignKey(bm => bm.BoardId);
+            modelBuilder.Entity<BoardMember>()
+                .HasOne(bm => bm.User)
+                .WithMany(u => u.BoardMemberships)
+                .HasForeignKey(bm => bm.UserId);
 
 
         }

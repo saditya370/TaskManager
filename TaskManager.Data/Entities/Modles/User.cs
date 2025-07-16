@@ -16,5 +16,8 @@ namespace TaskManager.Data.Entities.Modles
     public ICollection<Board> BoardsOwned { get; set; } = new List<Board>();
     public ICollection<TaskItem> AssignedTasks { get; set; } = new List<TaskItem>();
     public ICollection<Comment> Comments { get; set; } = new List<Comment>();
-}
+
+    public ICollection<BoardMember> BoardMemberships { get; set; } = new List<BoardMember>();
+
+    }
 }
