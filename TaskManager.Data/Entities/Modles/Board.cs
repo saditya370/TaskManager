@@ -14,6 +14,8 @@ namespace TaskManager.Data.Entities.Modles
         public Guid OwnerId { get; set; }
 
         public User Owner { get; set; } = null!;
+        public ICollection<TaskList> Lists { get; set; } = new List<TaskList>();
+        public ICollection<User> Members { get; set; } = new List<User>(); 
     }
 
 }

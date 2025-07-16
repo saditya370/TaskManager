@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,6 +20,8 @@ namespace TaskManager.Data.Entities.Modles
         public Guid? AssignedToId { get; set; }
         public User? AssignedTo { get; set; }
 
+        public ICollection<Tag> Tags { get; set; } = new List<Tag>();
+        public ICollection<Comment> Comments { get; set; } = new List<Comment>();
     }
 
 }

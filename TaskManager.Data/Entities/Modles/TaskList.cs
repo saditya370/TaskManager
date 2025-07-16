@@ -13,6 +13,7 @@ namespace TaskManager.Data.Entities.Modles
         public Guid BoardId { get; set; }
 
         public Board Board { get; set; } = null!;
+        public ICollection<TaskItem> Tasks { get; set; } = new List<TaskItem>();
     }
 
 }
