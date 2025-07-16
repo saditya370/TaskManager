@@ -19,7 +19,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Entities\Modles\" />
     <Folder Include="IRepository\" />
     <Folder Include="Repository\" />
   </ItemGroup>
