@@ -5,6 +5,8 @@ using System.Text;
 using TaskManager.Business.IServices;
 using TaskManager.Business.Services;
 using TaskManager.Data;
+using TaskManager.Data.IRepository;
+using TaskManager.Data.Repository;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -73,6 +75,8 @@ builder.Services.AddAuthentication(options =>
 });
 
 
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IJwtService, JwtService>();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
