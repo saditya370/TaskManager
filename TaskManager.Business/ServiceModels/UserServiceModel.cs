@@ -9,13 +9,10 @@ namespace TaskManager.Business.ServiceModels
     public class UserServiceModels
     {
 
-        public int Id { get; set; }
-        public string Username { get; set; }
-
-        public string Email { get; set; }
-
-        public string Password { get; set; }
-
-        public string Token { get; set; } // Added property to fix CS0117 error
+        public Guid Id { get; set; }
+        public string Username { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
+        public string Password { get; set; } = string.Empty;
+      
     }
 }

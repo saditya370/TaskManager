@@ -8,6 +8,7 @@ using TaskManager.Business.ServiceModels;
 using TaskManager.Data.Entities.Modles;
 using TaskManager.Data.IRepository;
 using TodoApp.UtilitiesAndConstants;
+
 namespace TaskManager.Business.Services
 {
     public class UserService : IUserService
@@ -21,19 +22,16 @@ namespace TaskManager.Business.Services
             _jwtService = jwtService;
         }
 
-       
-
         public async Task<string> LoginAsync(string username, string password)
         {
-           var user = await _userRepository.GetByUsername(username);
+            var user = await _userRepository.GetByUsername(username);
             if (user == null || !PasswordHasher.Verify(password, user.PasswordHash))
             {
                 throw new UnauthorizedAccessException("Invalid username or password.");
             }
-            var token = _jwtService.GenerateToken(user.Id.GetHashCode(), user.Username);
-            return token;
-        
 
+            var token = _jwtService.GenerateToken(user.Id, user.Username);
+            return token;
         }
 
         public async Task<UserServiceModels> RegisterAsync(string username, string password, string email)
@@ -49,7 +47,7 @@ namespace TaskManager.Business.Services
             var registerUser = await _userRepository.RegisterAsync(user);
             return new UserServiceModels
             {
-                Id = registerUser.Id.GetHashCode(),
+                Id = registerUser.Id,
                 Username = registerUser.Username,
                 Email = registerUser.Email
             };

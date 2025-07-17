@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using TaskManager.api.CustomMiddlewares;
 using TaskManager.Business.IServices;
 using TaskManager.Business.Services;
 using TaskManager.Data;
@@ -94,6 +96,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseMiddleware<UserSessionMiddleware>();
 
 app.MapControllers();
 
